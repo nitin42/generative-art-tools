@@ -57,5 +57,9 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "p5": "^0.7.2",
+    "two.js": "^0.7.0-beta.3"
+  }
 }
