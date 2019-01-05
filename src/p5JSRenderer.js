@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import { random } from "./utils";
 
+// Accepts a sketch function and returns a React component. The sketch function receives two values, a processing instance and component props
 export const createP5Sketch = sketch =>
   class extends React.PureComponent {
     // P5.js instance
@@ -30,7 +31,7 @@ export const createP5Sketch = sketch =>
     }
 
     componentDidUpdate() {
-      // Remove the old instance (and all its attributes)
+      // Remove the old instance (and all its properties)
       this.instance.remove();
 
       // Re-instantiate a instance using new props

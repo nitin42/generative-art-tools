@@ -17,7 +17,7 @@ function flush({ shouldDequeue }, work) {
   this.TwoJS.update();
 }
 
-// Takes a sketch function, and renders Two.js graphics
+// Takes a sketch function, and returns a React component. The sketch function receives two values, a two.js instance and component props
 export function createTwoJSDesign(sketch) {
   return class extends React.Component {
     // Two.js instance
