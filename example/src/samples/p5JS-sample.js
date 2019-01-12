@@ -47,7 +47,7 @@ function sketch(p5, props, wrapperEl) {
 
 const Shapes = createP5Sketch(sketch);
 
-export default class App extends Component {
+export default class TwoJSApp extends Component {
   state = {
     pause: true,
     instance: null

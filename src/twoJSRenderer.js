@@ -11,7 +11,7 @@ function flush({ shouldDequeue }, work) {
   }
 
   // Invoke our sketch function with props
-  work(this.TwoJS, this.props);
+  work(this.TwoJS, this.props, this.wrapper);
 
   // Update the canvas
   this.TwoJS.update();
@@ -22,6 +22,7 @@ export function createTwoJSDesign(sketch) {
   return class extends React.Component {
     // Two.js instance
     TwoJS = null;
+    wrapper = null;
 
     static defaultProps = {
       id: `__canvas-${random(0, 100)}`,
@@ -63,6 +64,7 @@ export function createTwoJSDesign(sketch) {
 
       return (
         <div
+          ref={wrapper => (this.wrapper = wrapper)}
           id={this.props.id}
           style={{
             boxShadow: "0px 2px 12px -2px rgba(0, 0, 0, 0.15)",
