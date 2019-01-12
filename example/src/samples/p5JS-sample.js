@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { createP5Sketch } from "react-generative-tools";
 
 function sketch(p5, props, wrapperEl) {
-  let pause = true;
+  let pause = props.pause;
 
   p5.setup = function() {
     p5.createCanvas(500, 500);
@@ -48,10 +48,15 @@ function sketch(p5, props, wrapperEl) {
 const Shapes = createP5Sketch(sketch);
 
 export default class App extends Component {
+  state = {
+    pause: true,
+    instance: null
+  };
+
   render() {
     return (
       <div>
-        <Shapes id="Shapes" />
+        <Shapes id="Shapes" pause={this.state.pause} />
       </div>
     );
   }

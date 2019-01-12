@@ -44,7 +44,7 @@ const offsets = {
 };
 
 // On each update/page refresh, it displaces the circles randomly
-const renderCircles = two => {
+const renderCircles = (two, props, wrapperEl) => {
   const circles = drawPattern(two, offsets);
 
   two.render();
