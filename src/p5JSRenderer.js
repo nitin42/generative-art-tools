@@ -43,7 +43,7 @@ export const createP5Sketch = sketch =>
       this.instance && this.instance.remove();
     }
 
-    renderer = p => sketch(p, this.props);
+    renderer = p => sketch(p, this.props, this.wrapper);
 
     getCanvas = () =>
       new p5(p => {
@@ -65,7 +65,6 @@ export const createP5Sketch = sketch =>
             width,
             height
           }}
-          {...rest}
         />
       );
     }
