@@ -130,7 +130,7 @@ const offsets = {
 };
 
 // On each update/page refresh, it displaces the circles randomly
-const renderCircles = two => {
+const renderCircles = (two, props, wrapperEl) => {
   const circles = drawPattern(two, offsets);
 
   two.render();
@@ -155,9 +155,9 @@ ReactDOM.render(<App />, document.getElementById("root"));
 
 ### `createTwoJSDesign`
 
-This function accepts only one argument which is `two.js` sketch function and returns a React component. The sketch function receives the `Two.js` instance as its parameter.
+This function accepts only one arguent which is `two.js` sketch function and returns a React component. The sketch function receives three parameters. The `Two.js` instance, the returned component's props and the wrapper element that wraps the artwork.
 
-`(sketch: (Two) => any) => any`
+`(sketch: (Two) => any, props: {}, wrapperEl: HTMLElement) => any`
 
 The returned React component accepts the following props -
 
@@ -169,9 +169,9 @@ The returned React component accepts the following props -
 
 ### `createP5Design`
 
-This function accepts only one argument which is `p5.js` sketch function and returns a React component. The sketch function receives the `p5.js` instance as its parameter.
+This function accepts only one argument which is `p5.js` sketch function and returns a React component. Similar to `createTwoJSDesign`, the sketch function receives three parameters. The `Two.js` instance, the returned component's props and the wrapper element that wraps the artwork.
 
-`(sketch: (P5) => any) => any`
+`(sketch: (Two) => any, props: {}, wrapperEl: HTMLElement) => any`
 
 The returned React component accepts the following props -
 
