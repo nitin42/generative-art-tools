@@ -1,5 +1,3 @@
-WORK IN PROGRESS. THE LIBRARY IS NOT PUBLISHED YET 😅
-
 # react-generative-tools
 
 > A collection of utility functions for creating generative art with React.
@@ -80,6 +78,8 @@ class App extends Component {
 ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
+[![Edit 6z855jq5or](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/6z855jq5or?fontsize=14)
+
 ### Using with Two.js
 
 ```jsx
@@ -150,6 +150,8 @@ class App extends Component {
 
 ReactDOM.render(<App />, document.getElementById("root"));
 ```
+
+[![Edit w6j4vj2wv7](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/w6j4vj2wv7?fontsize=14)
 
 ## Documentation
 

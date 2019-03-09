@@ -1,39 +1,54 @@
-import babel from 'rollup-plugin-babel'
-import commonjs from 'rollup-plugin-commonjs'
-import external from 'rollup-plugin-peer-deps-external'
-import postcss from 'rollup-plugin-postcss'
-import resolve from 'rollup-plugin-node-resolve'
-import url from 'rollup-plugin-url'
-import svgr from '@svgr/rollup'
+import babel from "rollup-plugin-babel";
+import { uglify } from "rollup-plugin-uglify";
+import replace from "rollup-plugin-replace";
+import pkg from "./package.json";
 
-import pkg from './package.json'
+const makeExternalPredicate = externalArr => {
+  if (externalArr.length === 0) {
+    return () => false;
+  }
+  const pattern = new RegExp(`^(${externalArr.join("|")})($|/)`);
+  return id => pattern.test(id);
+};
 
-export default {
-  input: 'src/index.js',
-  output: [
-    {
-      file: pkg.main,
-      format: 'cjs',
-      sourcemap: true
-    },
-    {
-      file: pkg.module,
-      format: 'es',
-      sourcemap: true
-    }
-  ],
+const ensureArray = maybeArr =>
+  Array.isArray(maybeArr) ? maybeArr : [maybeArr];
+
+const createConfig = ({ output, min = false, env } = {}) => ({
+  input: "src/index.js",
+  output: ensureArray(output).map(format =>
+    Object.assign({}, format, {
+      name: "ReactGenerativeTools",
+      exports: "named",
+      globals: {
+        react: "React",
+        Two: "two.js",
+        p5: "p5",
+        "prop-types": "PropTypes"
+      }
+    })
+  ),
+  external: makeExternalPredicate([
+    ...Object.keys(pkg.dependencies || {}),
+    ...Object.keys(pkg.peerDependencies || {})
+  ]),
   plugins: [
-    external(),
-    postcss({
-      modules: true
-    }),
-    url(),
-    svgr(),
-    babel({
-      exclude: 'node_modules/**',
-      plugins: [ 'external-helpers' ]
-    }),
-    resolve(),
-    commonjs()
-  ]
-}
+    babel({ plugins: ["external-helpers"] }),
+    env && replace({ "process.env.NODE_ENV": JSON.stringify(env) }),
+    min && uglify()
+  ].filter(Boolean)
+});
+
+export default [
+  createConfig({
+    output: [
+      { file: pkg.main, format: "cjs" },
+      { file: pkg.module, format: "es" }
+    ]
+  }),
+  createConfig({
+    output: { file: pkg.unpkg, format: "umd" },
+    env: "production",
+    min: true
+  })
+];
