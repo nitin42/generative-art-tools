@@ -4,8 +4,6 @@ WORK IN PROGRESS. THE LIBRARY IS NOT PUBLISHED YET 😅
 
 > A collection of utility functions for creating generative art with React.
 
-[![NPM](https://img.shields.io/npm/v/react-generative-tools.svg)](https://www.npmjs.com/package/react-generative-tools) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
 ## Install
 
 ```bash
