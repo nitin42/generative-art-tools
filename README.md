@@ -80,8 +80,6 @@ class App extends Component {
 ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
-[Check out the docs for `createP5Sketch`]().
-
 ### Using with Two.js
 
 ```jsx
@@ -152,10 +150,6 @@ class App extends Component {
 
 ReactDOM.render(<App />, document.getElementById("root"));
 ```
-
-[Check out the docs for `createTwoJSDesign`]().
-
-> Fact - [`generative-designs`](https://generative-design.surge.sh) uses `react-generative-tools` to create and render interactive artforms.
 
 ## Documentation
 
