@@ -157,7 +157,9 @@ ReactDOM.render(<App />, document.getElementById("root"));
 
 ### `createTwoJSDesign`
 
-This function accepts only one arguent which is `two.js` sketch function and returns a React component. The sketch function receives three parameters. The `Two.js` instance, the returned component's props and the wrapper element that wraps the artwork.
+This function accepts only one argument, a `two.js` sketch function and it returns a React component.
+
+The `two.js` sketch function receives three parameters. The `Two.js` instance, the returned component's props and the wrapper element that wraps the artwork.
 
 `(sketch: (Two) => any, props: {}, wrapperEl: HTMLElement) => any`
 
