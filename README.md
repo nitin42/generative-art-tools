@@ -1,86 +1,132 @@
-# react-generative-tools
+WORK IN PROGRESS!
 
-> A collection of utility functions for creating generative art with React.
+# generative-art-tools
+
+> Utilities for creating generative art
+
+## Table of contents
+
+* [What]()
+* [Install](#install)
+* [Functions](#functions)
+  - [Processing (p5.js)]()
+  - [Two.js]()
+  - [Shaders]()
+  - [random]()
+  - [gain]()
+  - [impulse]()
+  - [parabola]()
+  - [sine curve]()
+  - [power curve]()
+  - [exponential step]()
+  - [cubic pulse]()
+  - [Kynd curves]()
+    - [curve A]()
+    - [curve B]()
+    - [curve C]()
+    - [curve D]()
+    - [curve E]()
+
+## What
+
+`generative-art-tools` is a collection of utility functions to create generative art. It provides -
+
+* a set of helper functions to create generative art using React
+
+* and math functions that can be use to animate the sketches
 
 ## Install
 
 ```bash
-npm install --save react-generative-tools
+npm install --save generative-art-tools
 ```
 
-## Usage
+## Functions
 
-### p5.js
+### Processing (p5.js)
 
-To render p5.js sketches using React, you will need to use the function `createP5Sketch`.
+Render p5.js sketches using React.
 
 ```js
 import React from "react";
 import ReactDOM from "react-dom";
 import { createP5Sketch } from "react-generative-tools";
 
-function sketch(p5, props, wrapperEl) {
+function sketch(p5Instance, componentProps, wrapperElement) {
   let pause = true;
 
-  p5.setup = function() {
-    p5.createCanvas(500, 500);
-    p5.noFill();
-    p5.background(255);
-    p5.stroke(0, 15);
-    p5.frameRate(30);
+  p5Instance.setup = function() {
+    p5Instance.createCanvas(500, 500);
+    p5Instance.noFill();
+    p5Instance.background(255);
+    p5Instance.stroke(0, 15);
+    p5Instance.frameRate(30);
   };
 
-  p5.mousePressed = function() {
+  p5Instance.mousePressed = function() {
     pause = !pause;
   };
 
-  p5.draw = function() {
+  p5Instance.draw = function() {
     if (!pause) {
-      p5.push();
-      p5.translate(p5.width / 2, p5.height / 2);
-      p5.rotate(p5.frameCount);
+      p5Instance.push();
+      p5Instance.translate(p5Instance.width / 2, p5Instance.height / 2);
+      p5Instance.rotate(p5Instance.frameCount);
 
       const circleResolution = parseInt(
-        p5.map(p5.mouseY + 50, 0, p5.height, 2, 10)
+        p5Instance.map(p5Instance.mouseY + 50, 0, p5Instance.height, 2, 10)
       );
-      const radius = p5.mouseX - p5.width / 2;
+      const radius = p5Instance.mouseX - p5Instance.width / 2;
       const angle = (2 * Math.PI) / circleResolution;
 
-      p5.beginShape();
+      p5Instance.beginShape();
 
       for (let i = 0; i <= circleResolution; i++) {
         const x = Math.cos(angle * i) * radius;
         const y = Math.sin(angle * i) * radius;
 
-        p5.strokeWeight(i / 2);
-        p5.vertex(x, y);
+        p5Instance.strokeWeight(i / 2);
+        p5Instance.vertex(x, y);
       }
 
-      p5.endShape(p5.CLOSE);
+      p5Instance.endShape(p5Instance.CLOSE);
 
-      p5.pop();
+      p5Instance.pop();
     }
   };
 }
 
 const Shapes = createP5Sketch(sketch);
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <Shapes id="Shapes" />
-      </div>
-    );
-  }
+function App(props) {
+  return <Shapes id="Shapes" />
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('element-id'));
 ```
+
+**`createP5Design`**
+
+This function accepts only one argument which is `p5.js` sketch function and returns a React component. The sketch function receives three parameters, the `p5.js` instance, the returned component's props and the wrapper element that wraps the sketch.
+
+`(sketch: (Two) => any, props: {}, wrapperEl: HTMLElement) => any`
+
+The returned React component accepts the following props -
+
+- `width` - Canvas width
+
+- `height` - Canvas height
+
+- `id` - A unique element id (useful if you're rendering multiple sketch components)
+
+- `callback: (p5Instance) => void` - A callback function that receives the p5.js instance. Use this callback to do extra work.
+
 
 [![Edit 6z855jq5or](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/6z855jq5or?fontsize=14)
 
-### Using with Two.js
+### Two.js
+
+Render Two.js sketches using React
 
 ```jsx
 import React from "react";
@@ -130,32 +176,24 @@ const offsets = {
 };
 
 // On each update/page refresh, it displaces the circles randomly
-const renderCircles = (two, props, wrapperEl) => {
-  const circles = drawPattern(two, offsets);
+const renderCircles = (twoJSInstance, componentProps, wrapperElement) => {
+  const circles = drawPattern(twoJSInstance, offsets);
 
-  two.render();
+  twoJSInstance.render();
 };
 
 const Circles = createTwoJSDesign(renderCircles);
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <Circles id="Shapes" width={500} height={500} />
-      </div>
-    );
-  }
+function App(props) {
+  return <Circles id="Shapes" width={500} height={500} />;
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("element-id"));
 ```
 
 [![Edit w6j4vj2wv7](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/w6j4vj2wv7?fontsize=14)
 
-## Documentation
-
-### `createTwoJSDesign`
+**`createTwoJSDesign`**
 
 This function accepts only one argument, a `two.js` sketch function and it returns a React component.
 
@@ -171,19 +209,7 @@ The returned React component accepts the following props -
 
 - `id` - A unique element id (useful if you're rendering multiple sketch components)
 
-### `createP5Design`
-
-This function accepts only one argument which is `p5.js` sketch function and returns a React component. Similar to `createTwoJSDesign`, the sketch function receives three parameters. The `Two.js` instance, the returned component's props and the wrapper element that wraps the artwork.
-
-`(sketch: (Two) => any, props: {}, wrapperEl: HTMLElement) => any`
-
-The returned React component accepts the following props -
-
-- `width` - Canvas width
-
-- `height` - Canvas height
-
-- `id` - A unique element id (useful if you're rendering multiple sketch components)
+- `callback: (twoJSInstance) => void` - A callback function that receives the Two.js instance. Use this callback to do extra work.
 
 ## License
 
