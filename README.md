@@ -6,13 +6,13 @@ WORK IN PROGRESS!
 
 ## Table of contents
 
-* [What]()
+* [What](#what)
 * [Install](#install)
 * [Functions](#functions)
-  - [Processing (p5.js)]()
-  - [Two.js]()
-  - [Shaders]()
-  - [random]()
+  - [Processing (p5.js)](#processing-p5js)
+  - [Two.js](#twojs)
+  - [Shaders](#shaders)
+  - [random](#random)
   - [gain]()
   - [impulse]()
   - [parabola]()
@@ -210,6 +210,91 @@ The returned React component accepts the following props -
 - `id` - A unique element id (useful if you're rendering multiple sketch components)
 
 - `callback: (twoJSInstance) => void` - A callback function that receives the Two.js instance. Use this callback to do extra work.
+
+### Shaders
+
+Render shaders using React
+
+```jsx
+import React, { Component } from 'react'
+
+import { createShaderCanvas } from 'generative-art-tools';
+
+const shader = (props) => `
+  #ifdef GL_ES
+  precision mediump float;
+  #endif
+
+  uniform float u_time;
+  uniform vec2 u_mouse;
+  uniform vec2 u_resolution;
+  
+  float expStep( float x, float k, float n ){
+    return exp( -k*pow(x,n) );
+  }
+  
+  void main() {
+    vec2 point = gl_FragCoord.xy / u_resolution.xy;
+    float px = 1.0 / u_resolution.y;
+    vec2 cp = vec2(cos(u_time),sin(u_time)) * 0.618 + 0.620;
+  
+    float l = expStep(point.x, ${props.timeSync ? 'cp.x * u_time' : 'cp.x'}, ${props.timeSync ? 'cp.y * u_time' : 'cp.y'});
+    
+    vec3 color = vec3(smoothstep(l, l+px, point.y), sin(u_time), cos(cp.y) * 0.5);
+      
+    gl_FragColor = vec4(color, 1.0);
+  }
+`
+
+const ShaderComponent = createShaderCanvas(shader)
+
+class App extends Component {
+  state = {
+    timeSync: false
+  }
+
+  updateState = (e) => this.setState(state => ({ timeSync: !state.timeSync }))
+
+  render () {
+    const { timeSync } = this.state;
+
+    return (
+      <div onClick={this.updateState}>
+        <ShaderComponent id="exponential-step-curve" timeSync={timeSync} />
+      </div>
+    )
+  }
+}
+```
+
+[![Edit wopqzj7o77](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/wopqzj7o77)
+
+**`createShaderCanvas`**
+
+`(shader: (props) => string) => ReactComponent`
+
+`createShaderCanvas` takes a shader as an input and returns a React component which renders the shader. The shader function gets passed the component props.
+
+The returned React component accepts the following props - 
+
+* `id` (Required) - `id` of the canvas element. This is required to render the canvas
+
+* `height` (Optional) - height of the canvas.
+
+* `width` (Optional) - width of the canvas.
+
+* `style` (Optional) - canvas style.
+
+### Random
+
+Returns a random number between a specified range.
+
+```js
+import { random } from 'generative-art-tools';
+
+random(10, 18);
+```
+
 
 ## License
 
