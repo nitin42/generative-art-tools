@@ -13,19 +13,20 @@ WORK IN PROGRESS!
   - [Two.js](#twojs)
   - [Shaders](#shaders)
   - [random](#random)
-  - [gain]()
-  - [impulse]()
-  - [parabola]()
-  - [sine curve]()
-  - [power curve]()
-  - [exponential step]()
-  - [cubic pulse]()
-  - [Kynd curves]()
-    - [curve A]()
-    - [curve B]()
-    - [curve C]()
-    - [curve D]()
-    - [curve E]()
+    - [Shaping functions]()
+      - [gain]()
+      - [impulse]()
+      - [parabola]()
+      - [sine curve]()
+      - [power curve]()
+      - [exponential step]()
+      - [cubic pulse]()
+      - [Kynd curves]()
+        - [curve A]()
+        - [curve B]()
+        - [curve C]()
+        - [curve D]()
+        - [curve E]()
 
 ## What
 
@@ -295,6 +296,7 @@ import { random } from 'generative-art-tools';
 random(10, 18);
 ```
 
+### Shaping functions
 
 ## License
 
