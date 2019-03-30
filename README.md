@@ -308,6 +308,8 @@ Shaping functions are mathematical functions that lets you control the flow of v
 
 #### Gain
 
+`(x: number, y: number) => number`
+
 ```js
 import { gain } from "generative-art-tools";
 ```
@@ -326,6 +328,8 @@ const gain = (x: number, y: number): number => {
 </p></details>
 
 #### Impulse
+
+`(x: number, y: number) => number`
 
 ```js
 import { impulse } from "generative-art-tools";
@@ -346,6 +350,8 @@ const impulse = (x: number, y: number): number => {
 
 #### Parabola
 
+`(x: number, y: number) => number`
+
 ```js
 import { parabola } from "generative-art-tools";
 ```
@@ -361,6 +367,8 @@ const parabola = (x: number, y: number): number => Math.pow(4 * x * (1 - x), y);
 </p></details>
 
 #### Sine
+
+`(x: number, y: number) => number`
 
 ```js
 import { sine } from "generative-art-tools";
@@ -381,6 +389,8 @@ const sine = (x: number, y: number): number => {
 
 #### Power
 
+`(x: number, y: number, a: number) => number`
+
 ```js
 import { power } from "generative-art-tools";
 ```
@@ -400,6 +410,8 @@ const power = (x: number, a: number, b: number): number => {
 
 #### Exponential step
 
+`(x: number, y: number, n: number) => number`
+
 ```js
 import { expStep } from "generative-art-tools";
 ```
@@ -410,13 +422,15 @@ import { expStep } from "generative-art-tools";
 
 ```js
 const expStep = (x: number, y: number, n: number): number => {
-  return Math, exp(-y * Math.pow(x, n));
+  return Math.exp(-y * Math.pow(x, n));
 };
 ```
 
 </p></details>
 
 #### Cubic pulse
+
+`(x: number, y: number, a: number) => number`
 
 ```js
 import { cubicPulse } from "generative-art-tools";
@@ -427,7 +441,7 @@ import { cubicPulse } from "generative-art-tools";
   <p>
 
 ```js
-const cubicPulse = (a: number, y: number, x: number): number => {
+const cubicPulse = (x: number, y: number, a: number): number => {
   x = Math.abs(x - a);
   if (x > y) return 0;
 
