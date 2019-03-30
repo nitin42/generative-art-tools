@@ -41,7 +41,15 @@ npm install --save generative-art-tools
 
 ### Processing (p5.js)
 
+```js
+import { createP5Sketch } from "generative-art-tools";
+```
+
 Render p5.js sketches using React.
+
+<details>
+  <summary>Example usage</summary>
+  <p>
 
 ```js
 import React from "react";
@@ -101,11 +109,16 @@ function App(props) {
 ReactDOM.render(<App />, document.getElementById("element-id"));
 ```
 
+  </p>
+</details>
+
 **`createP5Sketch`**
 
-This function accepts only one argument which is `p5.js` sketch function and returns a React component. The sketch function receives three parameters, the `p5.js` instance, the returned component's props and the wrapper element that wraps the sketch.
+```js
+createP5Sketch(sketchFunction: (p5Instance: Object, props: Object wrapperEl: HTMLElement) => void) => ReactComponent
+```
 
-`(sketchFn: (p5Instance: Object, props: Object wrapperEl: HTMLElement) => void) => ReactComponent`
+This function accepts only one argument which is `p5.js` sketch function and returns a React component. The sketch function receives three parameters, the `p5.js` instance, the returned component's props and the wrapper element that wraps the sketch.
 
 The returned React component accepts the following props -
 
@@ -121,7 +134,15 @@ The returned React component accepts the following props -
 
 ### Two.js
 
+```js
+import { createTwoJSDesign } from "generative-art-tools";
+```
+
 Render Two.js sketches using React
+
+<details>
+  <summary>Example usage</summary>
+  <p>
 
 ```jsx
 import React from "react";
@@ -186,15 +207,20 @@ function App(props) {
 ReactDOM.render(<App />, document.getElementById("element-id"));
 ```
 
+  </p>
+</details>
+
 [![Edit w6j4vj2wv7](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/w6j4vj2wv7?fontsize=14)
 
 **`createTwoJSDesign`**
 
+```js
+createTwoJSDesign(sketchFunction: (twoJsInstance: Object, props: Object wrapperEl: HTMLElement) => void) => ReactComponent
+```
+
 This function accepts only one argument, a `two.js` sketch function and it returns a React component.
 
 The `two.js` sketch function receives three parameters. The `Two.js` instance, the returned component's props and the wrapper element that wraps the artwork.
-
-`(sketchFn: (twoJsInstance: Object, props: Object wrapperEl: HTMLElement) => void) => ReactComponent`
 
 The returned React component accepts the following props -
 
@@ -208,7 +234,15 @@ The returned React component accepts the following props -
 
 ### Shaders
 
+```js
+import { createShaderCanvas } from "generative-art-tools";
+```
+
 Render shaders using React
+
+<details>
+  <summary>Example usage</summary>
+  <p>
 
 ```jsx
 import React, { Component } from "react";
@@ -264,11 +298,14 @@ class App extends Component {
 }
 ```
 
+  </p>
+</details>
+
 [![Edit wopqzj7o77](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/wopqzj7o77)
 
 **`createShaderCanvas`**
 
-`(shader: (props) => string) => ReactComponent`
+`createShaderCanvas(shader: (props) => string) => ReactComponent`
 
 `createShaderCanvas` takes a shader as an input and returns a React component which renders the shader. The shader function gets passed the component props.
 
