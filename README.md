@@ -312,7 +312,9 @@ Shaping functions are mathematical functions that lets you control the flow of v
 import { gain } from "generative-art-tools";
 ```
 
-Implementation:
+<details>
+  <summary>Implementation</summary>
+  <p>
 
 ```js
 const gain = (x: number, y: number): number => {
@@ -321,13 +323,17 @@ const gain = (x: number, y: number): number => {
 };
 ```
 
+</p></details>
+
 #### Impulse
 
 ```js
 import { impulse } from "generative-art-tools";
 ```
 
-Implementation:
+<details>
+  <summary>Implementation</summary>
+  <p>
 
 ```js
 const impulse = (x: number, y: number): number => {
@@ -336,17 +342,23 @@ const impulse = (x: number, y: number): number => {
 };
 ```
 
+</p></details>
+
 #### Parabola
 
 ```js
 import { parabola } from "generative-art-tools";
 ```
 
-Implementation:
+<details>
+  <summary>Implementation</summary>
+  <p>
 
 ```js
 const parabola = (x: number, y: number): number => Math.pow(4 * x * (1 - x), y);
 ```
+
+</p></details>
 
 #### Sine
 
@@ -354,7 +366,9 @@ const parabola = (x: number, y: number): number => Math.pow(4 * x * (1 - x), y);
 import { sine } from "generative-art-tools";
 ```
 
-Implementation:
+<details>
+  <summary>Implementation</summary>
+  <p>
 
 ```js
 const sine = (x: number, y: number): number => {
@@ -363,13 +377,17 @@ const sine = (x: number, y: number): number => {
 };
 ```
 
+</p></details>
+
 #### Power
 
 ```js
 import { power } from "generative-art-tools";
 ```
 
-Implementation:
+<details>
+  <summary>Implementation</summary>
+  <p>
 
 ```js
 const power = (x: number, a: number, b: number): number => {
@@ -378,13 +396,17 @@ const power = (x: number, a: number, b: number): number => {
 };
 ```
 
+</p></details>
+
 #### Exponential step
 
 ```js
 import { expStep } from "generative-art-tools";
 ```
 
-Implementation:
+<details>
+  <summary>Implementation</summary>
+  <p>
 
 ```js
 const expStep = (x: number, y: number, n: number): number => {
@@ -392,13 +414,17 @@ const expStep = (x: number, y: number, n: number): number => {
 };
 ```
 
+</p></details>
+
 #### Cubic pulse
 
 ```js
 import { cubicPulse } from "generative-art-tools";
 ```
 
-Implementation:
+<details>
+  <summary>Implementation</summary>
+  <p>
 
 ```js
 const cubicPulse = (a: number, y: number, x: number): number => {
@@ -409,6 +435,8 @@ const cubicPulse = (a: number, y: number, x: number): number => {
   return 1 - x * x * (3 - 2 * x);
 };
 ```
+
+</p></details>
 
 ## License
 
