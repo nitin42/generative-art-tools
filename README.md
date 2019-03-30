@@ -371,7 +371,3 @@ const cubicPulse = (a: number, y: number, x: number): number => {
 ## License
 
 MIT © [nitin42](https://github.com/nitin42)
-
-```
-
-```
