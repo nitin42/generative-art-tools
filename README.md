@@ -46,7 +46,7 @@ Render p5.js sketches using React.
 ```js
 import React from "react";
 import ReactDOM from "react-dom";
-import { createP5Sketch } from "react-generative-tools";
+import { createP5Sketch } from "generative-art-tools";
 
 function sketch(p5Instance, componentProps, wrapperElement) {
   let pause = true;
@@ -126,7 +126,7 @@ Render Two.js sketches using React
 ```jsx
 import React from "react";
 import ReactDOM from "react-dom";
-import { createTwoJSDesign, random } from "react-generative-tools";
+import { createTwoJSDesign, random } from "generative-art-tools";
 
 const colors = {
   CIRCLE_ONE: "#ebedee",
