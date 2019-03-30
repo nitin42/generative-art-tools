@@ -21,12 +21,6 @@ WORK IN PROGRESS!
       - [power curve]()
       - [exponential step]()
       - [cubic pulse]()
-      - [Kynd curves]()
-        - [curve A]()
-        - [curve B]()
-        - [curve C]()
-        - [curve D]()
-        - [curve E]()
 
 ## What
 
@@ -309,7 +303,7 @@ Shaping functions are mathematical functions that lets you control the flow of v
 
 - Inigo Quilez's [blog](http://www.iquilezles.org/www/index.htm) explains the use cases for shaping functions such as - animations, or making envelopes for music.
 
-> The below functions were authored by [Inigo Quilez](http://www.iquilezles.org/index.html) and [Kynd](http://www.flickr.com/photos/kynd/9546075099). I have just ported them to code so that they can be used in creating animations.
+> The below functions were authored by [Inigo Quilez](http://www.iquilezles.org/index.html). I have just ported them to code so that they can be used in creating animations.
 
 #### Gain
 
@@ -340,7 +334,36 @@ const parabola = (x: number, y: number): number => Math.pow(4 * x * (1 - x), y);
 ```js
 const sine = (x: number, y: number): number => {
   const a = 3.1459265359 * y * x - 1;
-  return sine(a) / a;
+  return Math.sin(a) / a;
+};
+```
+
+#### Power
+
+```js
+const power = (x: number, a: number, b: number): number => {
+  const k = Math.pow(a + b, a + b) / (Math.pow(a, a) * Math.pow(b, b));
+  return k * Math.pow(x, a) * Math.pow(1 - x, b);
+};
+```
+
+#### Exponential step
+
+```js
+const expStep = (x: number, y: number, n: number): number => {
+  return Math, exp(-y * Math.pow(x, n));
+};
+```
+
+#### Cubic pulse
+
+```js
+const cubicPulse = (a: number, y: number, x: number): number => {
+  x = Math.abs(x - a);
+  if (x > y) return 0;
+
+  x /= y;
+  return 1 - x * x * (3 - 2 * x);
 };
 ```
 
