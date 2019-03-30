@@ -300,7 +300,7 @@ Shaping functions are mathematical functions that lets you control the flow of v
 
 - [Detailed reference guide on what and how to use shaping functions.](https://thebookofshaders.com/05/)
 
-- [Visualisation of shaping functions](https://github.com/nitin42/shaping-functions#introduction)
+- [Visualisation of shaping functions](https://shaping-functions.surge.sh)
 
 - Inigo Quilez's [blog](http://www.iquilezles.org/www/index.htm) explains the use cases for shaping functions such as - animations, or making envelopes for music.
 
