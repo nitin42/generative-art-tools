@@ -6,9 +6,9 @@ WORK IN PROGRESS!
 
 ## Table of contents
 
-* [What](#what)
-* [Install](#install)
-* [Functions](#functions)
+- [What](#what)
+- [Install](#install)
+- [Functions](#functions)
   - [Processing (p5.js)](#processing-p5js)
   - [Two.js](#twojs)
   - [Shaders](#shaders)
@@ -32,9 +32,9 @@ WORK IN PROGRESS!
 
 `generative-art-tools` is a collection of utility functions to create generative art. It provides -
 
-* a set of helper functions to create generative art using React
+- a set of helper functions to create generative art using React
 
-* and math functions that can be use to animate the sketches
+- and math functions that can be use to animate the sketches
 
 ## Install
 
@@ -100,10 +100,10 @@ function sketch(p5Instance, componentProps, wrapperElement) {
 const Shapes = createP5Sketch(sketch);
 
 function App(props) {
-  return <Shapes id="Shapes" />
+  return <Shapes id="Shapes" />;
 }
 
-ReactDOM.render(<App />, document.getElementById('element-id'));
+ReactDOM.render(<App />, document.getElementById("element-id"));
 ```
 
 **`createP5Design`**
@@ -121,7 +121,6 @@ The returned React component accepts the following props -
 - `id` - A unique element id (useful if you're rendering multiple sketch components)
 
 - `callback: (p5Instance) => void` - A callback function that receives the p5.js instance. Use this callback to do extra work.
-
 
 [![Edit 6z855jq5or](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/6z855jq5or?fontsize=14)
 
@@ -217,11 +216,11 @@ The returned React component accepts the following props -
 Render shaders using React
 
 ```jsx
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-import { createShaderCanvas } from 'generative-art-tools';
+import { createShaderCanvas } from "generative-art-tools";
 
-const shader = (props) => `
+const shader = props => `
   #ifdef GL_ES
   precision mediump float;
   #endif
@@ -239,31 +238,33 @@ const shader = (props) => `
     float px = 1.0 / u_resolution.y;
     vec2 cp = vec2(cos(u_time),sin(u_time)) * 0.618 + 0.620;
   
-    float l = expStep(point.x, ${props.timeSync ? 'cp.x * u_time' : 'cp.x'}, ${props.timeSync ? 'cp.y * u_time' : 'cp.y'});
+    float l = expStep(point.x, ${props.timeSync ? "cp.x * u_time" : "cp.x"}, ${
+  props.timeSync ? "cp.y * u_time" : "cp.y"
+});
     
     vec3 color = vec3(smoothstep(l, l+px, point.y), sin(u_time), cos(cp.y) * 0.5);
       
     gl_FragColor = vec4(color, 1.0);
   }
-`
+`;
 
-const ShaderComponent = createShaderCanvas(shader)
+const ShaderComponent = createShaderCanvas(shader);
 
 class App extends Component {
   state = {
     timeSync: false
-  }
+  };
 
-  updateState = (e) => this.setState(state => ({ timeSync: !state.timeSync }))
+  updateState = e => this.setState(state => ({ timeSync: !state.timeSync }));
 
-  render () {
+  render() {
     const { timeSync } = this.state;
 
     return (
       <div onClick={this.updateState}>
         <ShaderComponent id="exponential-step-curve" timeSync={timeSync} />
       </div>
-    )
+    );
   }
 }
 ```
@@ -276,28 +277,77 @@ class App extends Component {
 
 `createShaderCanvas` takes a shader as an input and returns a React component which renders the shader. The shader function gets passed the component props.
 
-The returned React component accepts the following props - 
+The returned React component accepts the following props -
 
-* `id` (Required) - `id` of the canvas element. This is required to render the canvas
+- `id` (Required) - `id` of the canvas element. This is required to render the canvas
 
-* `height` (Optional) - height of the canvas.
+- `height` (Optional) - height of the canvas.
 
-* `width` (Optional) - width of the canvas.
+- `width` (Optional) - width of the canvas.
 
-* `style` (Optional) - canvas style.
+- `style` (Optional) - canvas style.
 
 ### Random
 
 Returns a random number between a specified range.
 
 ```js
-import { random } from 'generative-art-tools';
+import { random } from "generative-art-tools";
 
 random(10, 18);
 ```
 
 ### Shaping functions
 
+Shaping functions are mathematical functions that lets you control the flow of values. These functions can be used to interpolate values between a defined range for example.
+
+#### Reference
+
+- [Detailed reference guide on what and how to use shaping functions.](https://thebookofshaders.com/05/)
+
+- [Visualisation of shaping functions](https://github.com/nitin42/shaping-functions#introduction)
+
+- Inigo Quilez's [blog](http://www.iquilezles.org/www/index.htm) explains the use cases for shaping functions such as - animations, or making envelopes for music.
+
+> The below functions were authored by [Inigo Quilez](http://www.iquilezles.org/index.html) and [Kynd](http://www.flickr.com/photos/kynd/9546075099). I have just ported them to code so that they can be used in creating animations.
+
+#### Gain
+
+```js
+const gain = (x: number, y: number): number => {
+  const a = 0.5 * Math.pow(2 * (x < 0.5 ? x : 1 - x), y);
+  return x < 0.5 ? a : 1 - a;
+};
+```
+
+#### Impulse
+
+```js
+const impulse = (x: number, y: number): number => {
+  const h = y * x;
+  return h * Math.exp(1 - h);
+};
+```
+
+#### Parabola
+
+```js
+const parabola = (x: number, y: number): number => Math.pow(4 * x * (1 - x), y);
+```
+
+#### Sine
+
+```js
+const sine = (x: number, y: number): number => {
+  const a = 3.1459265359 * y * x - 1;
+  return sine(a) / a;
+};
+```
+
 ## License
 
 MIT © [nitin42](https://github.com/nitin42)
+
+```
+
+```
