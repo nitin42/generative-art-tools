@@ -14,13 +14,14 @@ WORK IN PROGRESS!
   - [Shaders](#shaders)
   - [random](#random)
   - [Shaping functions](https://github.com/nitin42/generative-art-tools#shaping-functions)
+    - [Introduction](https://github.com/nitin42/generative-art-tools#reference)
     - [gain](https://github.com/nitin42/generative-art-tools#gain)
     - [impulse](https://github.com/nitin42/generative-art-tools#impulse)
     - [parabola](https://github.com/nitin42/generative-art-tools#parabola)
     - [sine curve](https://github.com/nitin42/generative-art-tools#sine)
-    - [power curve]()
-    - [exponential step]()
-    - [cubic pulse]()
+    - [power curve](https://github.com/nitin42/generative-art-tools#power)
+    - [exponential step](https://github.com/nitin42/generative-art-tools#exponential-step)
+    - [cubic pulse](https://github.com/nitin42/generative-art-tools#cubic-pulse)
 
 ## What
 
