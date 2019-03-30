@@ -13,14 +13,14 @@ WORK IN PROGRESS!
   - [Two.js](#twojs)
   - [Shaders](#shaders)
   - [random](#random)
-    - [Shaping functions](https://github.com/nitin42/generative-art-tools#shaping-functions)
-      - [gain](https://github.com/nitin42/generative-art-tools#gain)
-      - [impulse](https://github.com/nitin42/generative-art-tools#impulse)
-      - [parabola](https://github.com/nitin42/generative-art-tools#parabola)
-      - [sine curve](https://github.com/nitin42/generative-art-tools#sine)
-      - [power curve]()
-      - [exponential step]()
-      - [cubic pulse]()
+  - [Shaping functions](https://github.com/nitin42/generative-art-tools#shaping-functions)
+    - [gain](https://github.com/nitin42/generative-art-tools#gain)
+    - [impulse](https://github.com/nitin42/generative-art-tools#impulse)
+    - [parabola](https://github.com/nitin42/generative-art-tools#parabola)
+    - [sine curve](https://github.com/nitin42/generative-art-tools#sine)
+    - [power curve]()
+    - [exponential step]()
+    - [cubic pulse]()
 
 ## What
 
