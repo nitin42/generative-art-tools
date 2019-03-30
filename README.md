@@ -284,7 +284,7 @@ The returned React component accepts the following props -
 
 ### Random
 
-Returns a random number between a specified range.
+Returns a random number between a range.
 
 ```js
 import { random } from "generative-art-tools";
