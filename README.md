@@ -101,11 +101,11 @@ function App(props) {
 ReactDOM.render(<App />, document.getElementById("element-id"));
 ```
 
-**`createP5Design`**
+**`createP5Sketch`**
 
 This function accepts only one argument which is `p5.js` sketch function and returns a React component. The sketch function receives three parameters, the `p5.js` instance, the returned component's props and the wrapper element that wraps the sketch.
 
-`(sketch: (Two) => any, props: {}, wrapperEl: HTMLElement) => any`
+`(sketchFn: (p5Instance: Object, props: Object wrapperEl: HTMLElement) => void) => ReactComponent`
 
 The returned React component accepts the following props -
 
@@ -115,7 +115,7 @@ The returned React component accepts the following props -
 
 - `id` - A unique element id (useful if you're rendering multiple sketch components)
 
-- `callback: (p5Instance) => void` - A callback function that receives the p5.js instance. Use this callback to do extra work.
+- `callback: (p5Instance) => void` - A callback function that receives the p5.js instance. Use this callback to do some extra stuff.
 
 [![Edit 6z855jq5or](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/6z855jq5or?fontsize=14)
 
@@ -194,7 +194,7 @@ This function accepts only one argument, a `two.js` sketch function and it retur
 
 The `two.js` sketch function receives three parameters. The `Two.js` instance, the returned component's props and the wrapper element that wraps the artwork.
 
-`(sketch: (Two) => any, props: {}, wrapperEl: HTMLElement) => any`
+`(sketchFn: (twoJsInstance: Object, props: Object wrapperEl: HTMLElement) => void) => ReactComponent`
 
 The returned React component accepts the following props -
 
