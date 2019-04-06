@@ -1,5 +1,3 @@
-WORK IN PROGRESS!
-
 # generative-art-tools
 
 > Utilities for creating generative art
