@@ -128,7 +128,7 @@ The returned React component accepts the following props -
 
 - `id` - A unique element id (useful if you're rendering multiple sketch components)
 
-- `callback: (p5Instance) => void` - A callback function that receives the p5.js instance. Use this callback to do some extra stuff.
+- `callback: (p5Instance) => void` - A callback function that receives the p5.js instance. Use this callback to do some extra stuff with the sketch
 
 [![Edit 6z855jq5or](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/6z855jq5or?fontsize=14)
 
@@ -230,7 +230,7 @@ The returned React component accepts the following props -
 
 - `id` - A unique element id (useful if you're rendering multiple sketch components)
 
-- `callback: (twoJSInstance) => void` - A callback function that receives the Two.js instance. Use this callback to do extra work.
+- `callback: (twoJSInstance) => void` - A callback function that receives the Two.js instance. Use this callback to do extra work with the sketch
 
 ### Shaders
 
@@ -305,7 +305,9 @@ class App extends Component {
 
 **`createShaderCanvas`**
 
-`createShaderCanvas(shader: (props) => string) => ReactComponent`
+```js
+createShaderCanvas(shader: (props) => string) => ReactComponent
+```
 
 `createShaderCanvas` takes a shader as an input and returns a React component which renders the shader. The shader function gets passed the component props.
 
